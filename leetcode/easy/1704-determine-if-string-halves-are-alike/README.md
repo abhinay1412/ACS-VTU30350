@@ -42,9 +42,9 @@ Notice that the vowel o is counted twice.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.4 MB  
-**Submitted:** 2026-08-24T06:02:56.179Z  
+**Runtime:** 4 ms (beats 59.78%)  
+**Memory:** 43 MB (beats 77.73%)  
+**Submitted:** 2026-08-24T06:03:02.766Z  
 
 ```java
 class Solution {
