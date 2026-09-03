@@ -49,23 +49,22 @@ stockSpanner.next(85);  // return 6
 ## Solution
 
 **Language:** Java  
-**Runtime:** 31 ms (beats 60.14%)  
-**Memory:** 55.6 MB (beats 13.49%)  
-**Submitted:** 2026-08-27T04:08:23.418Z  
+**Runtime:** 30 ms (beats 74.24%)  
+**Memory:** 55.3 MB (beats 19.12%)  
+**Submitted:** 2026-08-27T04:09:00.747Z  
 
 ```java
 class StockSpanner {
-    Stack<int[]> stack;
+    Stack<int[]> st;
     public StockSpanner() {
-        stack = new Stack<>();
+        st = new Stack<>();
     }
-
     public int next(int price) {
         int span = 1;
-        while(!stack.isEmpty() && stack.peek()[0] <= price){
-            span += stack.pop()[1];
+        while (!st.isEmpty() && st.peek()[0] <= price) {
+            span += st.pop()[1];
         }
-        stack.add(new int[]{price, span});
+        st.push(new int[] {price, span});
         return span;
     }
 }
