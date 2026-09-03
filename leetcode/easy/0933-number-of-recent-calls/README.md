@@ -44,9 +44,9 @@ recentCounter.ping(3002);  // requests = [1, 100, 3001, 3002], range is [2,3002]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 18 ms (beats 98.91%)  
-**Memory:** 59.9 MB (beats 5.86%)  
-**Submitted:** 2026-09-03T03:55:56.417Z  
+**Runtime:** 22 ms (beats 51.60%)  
+**Memory:** 59.4 MB (beats 61.31%)  
+**Submitted:** 2026-09-03T04:06:17.288Z  
 
 ```java
 import java.util.*;
