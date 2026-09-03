@@ -46,42 +46,35 @@ Output: [1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 32 ms (beats 42.17%)  
-**Memory:** 149.4 MB (beats 38.32%)  
-**Submitted:** 2026-08-29T04:15:22.436Z  
+**Runtime:** 31 ms (beats 54.73%)  
+**Memory:** 146.7 MB (beats 56.69%)  
+**Submitted:** 2026-08-29T04:15:58.721Z  
 
 ```java
+
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        Deque<Integer> dq=new ArrayDeque<>();
-        int i=0;
-        int j=0;
-        while(i-j!=k){
-            while(!dq.isEmpty() && dq.peekFirst()<nums[i]){
-                dq.removeFirst();
+        int n = nums.length;
+        int[] result = new int[n - k + 1];
+        Deque<Integer> window = new ArrayDeque<>();
+
+        for (int i = 0; i < n; i++) {
+            while (!window.isEmpty() && window.peekFirst() < i - k + 1) {
+                window.pollFirst();
             }
-            if(dq.isEmpty() || dq.peekFirst()>=nums[i]){
-                dq.addFirst(nums[i]);
+
+            while (!window.isEmpty() && nums[window.peekLast()] < nums[i]) {
+                window.pollLast();
             }
-            i++;
+
+            window.offerLast(i);
+
+            if (i >= k - 1) {
+                result[i - k + 1] = nums[window.peekFirst()];
+            }
         }
-        int [] ans=new int[nums.length-k+1];
-        ans[j]=dq.peekLast();
-        while(i!=nums.length){
-            if(dq.peekLast()==nums[j] ){
-                dq.removeLast();
-            }
-            j++;
-            while(!dq.isEmpty() && dq.peekFirst()<nums[i]){
-                dq.removeFirst();
-            }
-            if(dq.isEmpty() || dq.peekFirst()>=nums[i]){
-                dq.addFirst(nums[i]);
-            }
-            i++;
-            ans[j]=dq.peekLast();
-        }
-        return ans;
+
+        return result;
     }
 }
 ```
