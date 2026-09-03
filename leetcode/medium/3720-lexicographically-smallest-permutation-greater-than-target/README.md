@@ -55,71 +55,69 @@ A string `a` is  **lexicographically strictly greater** than a string `b` (of th
 ## Solution
 
 **Language:** Java  
-**Runtime:** 3 ms (beats 58.06%)  
-**Memory:** 45.8 MB (beats 41.94%)  
-**Submitted:** 2026-08-27T04:03:16.690Z  
+**Runtime:** 2 ms (beats 91.94%)  
+**Memory:** 45 MB (beats 61.29%)  
+**Submitted:** 2026-08-27T04:03:48.041Z  
 
 ```java
 class Solution {
     public String lexGreaterPermutation(String s, String target) {
-        int n = s.length();
+        int[] count = new int[26];
 
-        // Frequency of characters in s
-        int[] cnt = new int[26];
-
-        for (char c : s.toCharArray()) {
-            cnt[c - 'a']++;
+        for (char ch : s.toCharArray()) {
+            count[ch - 'a']++;
         }
 
-        // Try the position where we make the string greater.
-        // Rightmost position is preferred.
-        for (int i = n - 1; i >= 0; i--) {
+        for (char ch : target.toCharArray()) {
+            count[ch - 'a']--;
+        }
 
-            // Rebuild the frequency array for this pivot.
-            int[] remain = cnt.clone();
+        for (int i = target.length() - 1; i >= 0; i--) {
+            int current = target.charAt(i) - 'a';
 
-            // Try to keep target[0 ... i-1] unchanged.
-            boolean possible = true;
+            count[current]++;
 
-            for (int j = 0; j < i; j++) {
-                int x = target.charAt(j) - 'a';
+            boolean canFormPrefix = true;
 
-                if (remain[x] == 0) {
-                    possible = false;
+            for (int freq : count) {
+                if (freq < 0) {
+                    canFormPrefix = false;
                     break;
                 }
-
-                remain[x]--;
             }
 
-            if (!possible)
+            if (!canFormPrefix) {
                 continue;
-
-            // At position i, we need the smallest
-            // available character strictly greater than target[i].
-            int targetChar = target.charAt(i) - 'a';
-
-            for (int c = targetChar + 1; c < 26; c++) {
-
-                if (remain[c] == 0)
-                    continue;
-
-                StringBuilder ans = new StringBuilder(target.substring(0, i));
-
-                // Make the first difference here.
-                ans.append((char) ('a' + c));
-
-                remain[c]--;
-
-                // Fill the rest in sorted order.
-                for (int x = 0; x < 26; x++) {
-                    for (int t = 0; t < remain[x]; t++) {
-                        ans.append((char) ('a' + x));
-                    }
-                }
-
-                return ans.toString();
             }
+
+            int next = -1;
+
+            for (int c = current + 1; c < 26; c++) {
+                if (count[c] > 0) {
+                    next = c;
+                    break;
+                }
+            }
+
+            if (next == -1) {
+                continue;
+            }
+
+            count[next]--;
+
+            StringBuilder answer = new StringBuilder();
+
+            answer.append(target, 0, i);
+            answer.append((char) ('a' + next));
+
+            for (int c = 0; c < 26; c++) {
+                while (count[c] > 0) {
+                    answer.append((char) ('a' + c));
+                    count[c]--;
+                }
+            }
+
+            return answer.toString();
         }
 
         return "";
