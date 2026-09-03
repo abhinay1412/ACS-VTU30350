@@ -43,9 +43,9 @@ Output: false
 ## Solution
 
 **Language:** Java  
-**Runtime:** 23 ms (beats 88.10%)  
-**Memory:** 94.1 MB (beats 36.94%)  
-**Submitted:** 2026-08-13T04:23:54.743Z  
+**Runtime:** 24 ms (beats 71.34%)  
+**Memory:** 94.6 MB (beats 36.83%)  
+**Submitted:** 2026-08-13T04:24:38.847Z  
 
 ```java
 import java.util.HashSet;
@@ -56,12 +56,10 @@ class Solution {
         Set<Integer> set = new HashSet<>();
         
         for (int i = 0; i < nums.length; i++) {
-            // Remove the element that is now outside the window
             if (i > k) {
                 set.remove(nums[i - k - 1]);
             }
             
-            // Try to add the current element. If it fails, a duplicate exists.
             if (!set.add(nums[i])) {
                 return true;
             }
