@@ -50,25 +50,22 @@ stockSpanner.next(85);  // return 6
 
 **Language:** Java  
 **Runtime:** 30 ms (beats 74.24%)  
-**Memory:** 55.4 MB (beats 19.12%)  
-**Submitted:** 2026-08-27T04:05:47.284Z  
+**Memory:** 55.2 MB (beats 24.89%)  
+**Submitted:** 2026-08-27T04:07:08.842Z  
 
 ```java
-import java.util.Stack;
-
 class StockSpanner {
-    private Stack<int[]> stack;
-
+    Stack<int[]> stack;
     public StockSpanner() {
         stack = new Stack<>();
     }
 
     public int next(int price) {
         int span = 1;
-        while (!stack.isEmpty() && stack.peek()[0] <= price) {
-            span += stack.pop()[1]; 
+        while(!stack.isEmpty() && stack.peek()[0] <= price){
+            span += stack.pop()[1];
         }
-        stack.push(new int[]{price, span});
+        stack.add(new int[]{price, span});
         return span;
     }
 }
