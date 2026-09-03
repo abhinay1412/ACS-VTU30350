@@ -46,35 +46,33 @@ Output: [1]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 31 ms (beats 54.73%)  
-**Memory:** 146.7 MB (beats 56.69%)  
-**Submitted:** 2026-08-29T04:15:58.721Z  
+**Runtime:** 30 ms (beats 72.97%)  
+**Memory:** 146.6 MB (beats 60.85%)  
+**Submitted:** 2026-08-29T04:16:52.787Z  
 
 ```java
-
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int[] result = new int[n - k + 1];
-        Deque<Integer> window = new ArrayDeque<>();
-
-        for (int i = 0; i < n; i++) {
-            while (!window.isEmpty() && window.peekFirst() < i - k + 1) {
-                window.pollFirst();
+        if (nums.length == 0 || k == 0) {
+            return new int[0];
+        }
+        int [] list = new int[nums.length - k + 1 ];
+        int ansIndex = 0;
+        Deque<Integer> dq = new ArrayDeque<>();
+        for (int i = 0; i < nums.length; i++) {
+            while (dq.size() > 0 && dq.peek() < i - k + 1) {
+                dq.removeFirst();
             }
-
-            while (!window.isEmpty() && nums[window.peekLast()] < nums[i]) {
-                window.pollLast();
+            while (dq.size() > 0 && nums[i] > nums[dq.peekLast()]) {
+                dq.removeLast();
             }
-
-            window.offerLast(i);
-
+            dq.addLast(i);
             if (i >= k - 1) {
-                result[i - k + 1] = nums[window.peekFirst()];
+                list[ansIndex++]=nums[dq.peekFirst()];
+
             }
         }
-
-        return result;
+        return list;
     }
 }
 ```
