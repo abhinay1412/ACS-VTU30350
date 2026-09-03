@@ -49,9 +49,9 @@ stockSpanner.next(85);  // return 6
 ## Solution
 
 **Language:** Java  
-**Runtime:** 30 ms (beats 74.24%)  
-**Memory:** 55.2 MB (beats 24.89%)  
-**Submitted:** 2026-08-27T04:07:08.842Z  
+**Runtime:** 0 ms  
+**Memory:** 42.6 MB  
+**Submitted:** 2026-08-27T04:08:18.457Z  
 
 ```java
 class StockSpanner {
