@@ -52,9 +52,9 @@ Hence, the array result formed by concatenation is [5,3,4,8].
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-20T04:21:57.895Z  
+**Runtime:** 1 ms (beats 98.08%)  
+**Memory:** 46.5 MB (beats 90.87%)  
+**Submitted:** 2026-08-20T04:22:04.931Z  
 
 ```java
 class Solution {
