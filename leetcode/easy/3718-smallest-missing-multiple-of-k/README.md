@@ -41,24 +41,27 @@ The multiples of `k = 5` are 5, 10, 15, 20... and the smallest multiple missing 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 2 ms (beats 68.20%)  
-**Memory:** 45.6 MB (beats 26.41%)  
-**Submitted:** 2026-08-25T06:24:38.237Z  
+**Runtime:** 0 ms (beats 100.00%)  
+**Memory:** 44.9 MB (beats 76.35%)  
+**Submitted:** 2026-08-25T06:27:06.637Z  
 
 ```java
 class Solution {
+
     public int missingMultiple(int[] nums, int k) {
-        Set<Integer> seen = new HashSet<>();
-        for (int num : nums) {
-            seen.add(num);
+        boolean[] contains = new boolean[201];
+
+        for (int ele : nums) {
+            contains[ele] = true;
         }
 
-        int cur = k;
-        while (seen.contains(cur)) {
-            cur += k;
+        int ans = k;
+
+        while (contains[ans]) {
+            ans += k;
         }
 
-        return cur;
+        return ans;
     }
 }
 ```
