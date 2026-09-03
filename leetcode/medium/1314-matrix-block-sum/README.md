@@ -40,30 +40,47 @@ Output: [[45,45,45],[45,45,45],[45,45,45]]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 88 ms (beats 21.74%)  
-**Memory:** 46.8 MB (beats 23.50%)  
-**Submitted:** 2026-08-24T06:27:29.290Z  
+**Runtime:** 0 ms  
+**Memory:** 43 MB  
+**Submitted:** 2026-08-24T06:28:20.119Z  
 
 ```java
 class Solution {
+    //input: n * m = O(n^2)
+    
+    //time :O(n^4), n = number of rows and cols in mat to loop through
+    //space:O(n^2), n = number of rows and cols in grid 
+
     public int[][] matrixBlockSum(int[][] mat, int k) {
-       int[][] arr= new int[mat.length][mat[0].length];
-       for(int i=0;i<mat.length;i++)
-       {
-        for(int j=0;j<mat[0].length;j++)
-        {
-            int sum=0;
-            for(int r=Math.max(0,i-k);r<=i+k && r<mat.length;r++)
-            {
-                for(int c=Math.max(j-k,0);c<=j+k && c<mat[0].length;c++)
-                {
-                    sum= sum + mat[r][c];
+        // i - k <= row <= i + k
+        // j - k <= col <= j + k
+
+        int row = mat.length;
+        int col = mat[0].length;
+
+        int[][] grid = new int[row][col];
+
+        // first time loop
+        for(int i =0; i < mat.length; i++) {
+            for(int j =0; j < mat[i].length; j++) {
+                int sum = 0;
+
+                // second time loop
+                for(int r = i - k; r <= i + k; r++) {
+                    for(int c = j - k; c <= j + k; c++) {
+                        
+                        //check bounds
+                        if(r >= 0 && r < row && c >= 0 && c < col) {
+                            sum += mat[r][c];
+                        }
+                    }
                 }
+
+                grid[i][j] = sum;
             }
-            arr[i][j] = sum;
         }
-       }
-       return arr; 
+
+        return grid;
     }
 }
 ```
