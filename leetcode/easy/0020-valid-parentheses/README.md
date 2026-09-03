@@ -55,30 +55,36 @@ An input string is valid if:
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-08-27T04:47:39.667Z  
+**Memory:** 42.5 MB  
+**Submitted:** 2026-08-27T04:50:58.681Z  
 
 ```java
+import java.util.*; // Include Stack and Map
+
 public class Solution {
     public boolean isValid(String s) {
+        // 1. Stack to store opening brackets
         Stack<Character> stack = new Stack<>();
-        Map<Character, Character> map = Map.of(
-            ')', '(',
-            '}', '{',
-            ']', '['
-        );
         
+        // 2. Map to match closing → opening brackets
+        Map<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+        
+        // 3. Process each character
         for (char c : s.toCharArray()) {
-            // Opening bracket → push to stack
+            // If NOT a closing bracket → push to stack
             if (!map.containsKey(c)) {
                 stack.push(c);
-            } 
-            // Closing bracket → check match
+            }
+            // If IS a closing bracket → check match
             else if (!stack.isEmpty() && stack.pop() != map.get(c)) {
                 return false;
             }
         }
         
+        // 4. Final check - all brackets closed?
         return stack.isEmpty();
     }
 }
