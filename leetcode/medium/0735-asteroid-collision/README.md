@@ -60,40 +60,40 @@ Explanation: The asteroid -6 makes the asteroid 3 and 5 explode, and then contin
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-29T03:33:18.419Z  
+**Memory:** 42.7 MB  
+**Submitted:** 2026-08-29T03:33:59.451Z  
 
 ```java
 class Solution {
-    public int[] asteroidCollision(int[] asteroids) {
-        Stack<Integer> stack = new Stack<>();
-        
-        for (int a : asteroids) {
-            if (a > 0) {
-                stack.push(a);
-            } else {
-                while (!stack.isEmpty() && stack.peek() > 0 && stack.peek() < -a) {
-                    stack.pop();
-                }
-
-                if (stack.isEmpty() || stack.peek() < 0)  {
-                    stack.push(a);
-                }
-
-                if (stack.peek() == -a) {
-                    stack.pop();
-                }
+    public int[] asteroidCollision(int[] nums) {
+        int n=nums.length;
+        Stack<Integer> st = new Stack<Integer>();
+        for(int i=0;i<n;i++){
+           if(nums[i]>0){
+            st.push(nums[i]);
+           }
+           else{
+            while(!st.isEmpty()&&st.peek()>0&&st.peek()<Math.abs(nums[i])){
+                st.pop();
             }
+            if(st.isEmpty()||st.peek()<0){
+                st.push(nums[i]);
+            }
+            if(st.peek()==Math.abs(nums[i])){
+                st.pop();
+            }
+           }
+            
         }
 
-        int[] res = new int[stack.size()];
-        int i = stack.size() - 1;
+         int[] ans = new int[st.size()];
 
-        while(!stack.isEmpty()) {
-            res[i--] = stack.pop();
+        for(int i=st.size()-1;i>=0;i--) {
+            ans[i] = st.pop();
         }
 
-        return res;   
+        return ans;
+        
     }
 }
 ```
