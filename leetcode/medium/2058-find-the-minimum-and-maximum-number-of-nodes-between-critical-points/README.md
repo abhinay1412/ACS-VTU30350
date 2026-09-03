@@ -63,49 +63,49 @@ Note that the last node is not considered a local maxima because it does not hav
 ## Solution
 
 **Language:** Java  
-**Runtime:** 21 ms (beats 6.05%)  
-**Memory:** 117.7 MB (beats 5.10%)  
-**Submitted:** 2026-08-31T03:22:57.284Z  
+**Runtime:** 5 ms (beats 40.73%)  
+**Memory:** 106 MB (beats 85.47%)  
+**Submitted:** 2026-08-31T03:23:31.879Z  
 
 ```java
 class Solution {
     public int[] nodesBetweenCriticalPoints(ListNode head) {
-        List<Integer> nums = new ArrayList<>();
+        ListNode prev = head;
+        ListNode cur = head.next;
 
-        while(head != null){
-            nums.add(head.val);
-            head = head.next;
+        int idx = 1;
+
+        int firstCritical = -1;
+        int lastCritical = -1;
+        int minDist = Integer.MAX_VALUE;
+
+        while(cur.next != null){
+            ListNode next = cur.next;
+
+            boolean isMax = cur.val > prev.val && cur.val > next.val;
+            boolean isMin = cur.val < prev.val && cur.val < next.val;
+
+            if(isMax || isMin){
+                if(lastCritical == -1){
+                    firstCritical = idx;
+                }
+                else {
+                    minDist = Math.min(minDist, idx - lastCritical);
+                }
+
+                lastCritical = idx;
+            }
+
+            prev = cur;
+            cur = next;
+            idx++;
         }
 
-        List<Integer> criticalPoints = new ArrayList<>();
-
-        int n = nums.size();
-
-        for(int i = 1; i < n - 1; i++){
-            if(nums.get(i) > nums.get(i - 1) && nums.get(i) > nums.get(i + 1)){
-                criticalPoints.add(i);
-            }
-            else if(nums.get(i) < nums.get(i - 1) && nums.get(i) < nums.get(i + 1)){
-                criticalPoints.add(i);
-            }
-        }
-
-        int m = criticalPoints.size();
-
-        if(m < 2){
+        if(firstCritical == -1 || firstCritical == lastCritical){
             return new int[]{-1, -1};
         }
 
-        int minDist = Integer.MAX_VALUE;
-
-        int maxDist = criticalPoints.get(m - 1) - criticalPoints.get(0);
-
-        for(int i = 1; i < m; i++){
-            minDist = Math.min(
-                minDist,
-                criticalPoints.get(i) - criticalPoints.get(i - 1)
-            );
-        }
+        int maxDist = lastCritical - firstCritical;
 
         return new int[]{minDist, maxDist};
     }
