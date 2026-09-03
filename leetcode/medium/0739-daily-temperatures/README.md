@@ -42,28 +42,24 @@ Output: [1,1,0]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 60 ms (beats 78.87%)  
-**Memory:** 108 MB (beats 7.52%)  
-**Submitted:** 2026-08-27T03:55:47.797Z  
+**Runtime:** 0 ms  
+**Memory:** 43 MB  
+**Submitted:** 2026-08-27T03:56:33.372Z  
 
 ```java
 class Solution {
-    public int[] dailyTemperatures(int[] temperatures) {
-        int[] result = new int[temperatures.length];
-        
+    public int[] dailyTemperatures(int[] temps) {
+        int[] results = new int[temps.length];
         Stack<Integer> stack = new Stack<>();
-        
-        for (int i = 0; i < temperatures.length; i++) {
-            while (!stack.isEmpty() && temperatures[i] > temperatures[stack.peek()]) {
-                int pastIndex = stack.pop();
-                
-                result[pastIndex] = i - pastIndex;
+        /// UPVOTE !
+        for (int i = 0; i < temps.length; i++) {
+            while (!stack.isEmpty() && temps[stack.peek()] < temps[i]) {
+                results[stack.peek()] = i - stack.pop();
             }
-            
             stack.push(i);
         }
-        
-        return result;
+
+        return results;
     }
 }
 ```
