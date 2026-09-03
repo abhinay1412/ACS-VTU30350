@@ -64,50 +64,42 @@ Note that the last node is not considered a local maxima because it does not hav
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.8 MB  
-**Submitted:** 2026-08-31T03:23:24.472Z  
+**Memory:** 42.9 MB  
+**Submitted:** 2026-08-31T03:24:36.152Z  
 
 ```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public int[] nodesBetweenCriticalPoints(ListNode head) {
-        ListNode prev = head;
-        ListNode cur = head.next;
-
-        int idx = 1;
-
-        int firstCritical = -1;
-        int lastCritical = -1;
-        int minDist = Integer.MAX_VALUE;
-
-        while(cur.next != null){
-            ListNode next = cur.next;
-
-            boolean isMax = cur.val > prev.val && cur.val > next.val;
-            boolean isMin = cur.val < prev.val && cur.val < next.val;
-
-            if(isMax || isMin){
-                if(lastCritical == -1){
-                    firstCritical = idx;
+        int max=-1,min=Integer.MAX_VALUE;
+        int l1=-1,r=1,l2=-1;
+        ListNode temp=head.next;
+        int prev=head.val;
+        while(temp!=null && temp.next!=null){
+            r++;
+             if((temp.val>prev && temp.val>temp.next.val) || (temp.val<prev && temp.val<temp.next.val)){
+                if(l1==-1 && l2==-1){
+                    l1=r;
+                    l2=r;
                 }
-                else {
-                    minDist = Math.min(minDist, idx - lastCritical);
-                }
-
-                lastCritical = idx;
-            }
-
-            prev = cur;
-            cur = next;
-            idx++;
+                max=r-l1;
+                if(l1!=r)min=Math.min(min,r-l2);
+                l2=r;
+             }
+             prev=temp.val;
+             temp=temp.next;
         }
-
-        if(firstCritical == -1 || firstCritical == lastCritical){
-            return new int[]{-1, -1};
-        }
-
-        int maxDist = lastCritical - firstCritical;
-
-        return new int[]{minDist, maxDist};
+        if(min==Integer.MAX_VALUE) return new int[]{-1,-1};
+        return new int[]{min,max};
     }
 }
 ```
