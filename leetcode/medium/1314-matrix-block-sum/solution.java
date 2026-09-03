@@ -1,38 +1,41 @@
 class Solution {
-    //input: n * m = O(n^2)
-    
-    //time :O(n^4), n = number of rows and cols in mat to loop through
-    //space:O(n^2), n = number of rows and cols in grid 
-
     public int[][] matrixBlockSum(int[][] mat, int k) {
-        // i - k <= row <= i + k
-        // j - k <= col <= j + k
+        int m=mat.length;
+        int n=mat[0].length;
+        int[][] result=new int[m][n];
 
-        int row = mat.length;
-        int col = mat[0].length;
-
-        int[][] grid = new int[row][col];
-
-        // first time loop
-        for(int i =0; i < mat.length; i++) {
-            for(int j =0; j < mat[i].length; j++) {
-                int sum = 0;
-
-                // second time loop
-                for(int r = i - k; r <= i + k; r++) {
-                    for(int c = j - k; c <= j + k; c++) {
-                        
-                        //check bounds
-                        if(r >= 0 && r < row && c >= 0 && c < col) {
-                            sum += mat[r][c];
-                        }
-                    }
-                }
-
-                grid[i][j] = sum;
+        for(int i=0;i<m;i++){
+            for(int j=1;j<n;j++){
+                mat[i][j]+=mat[i][j-1];
             }
         }
 
-        return grid;
+        for(int j=0;j<n;j++){
+            for(int i=1;i<m;i++){
+                mat[i][j]+=mat[i-1][j];
+            }
+        }
+
+
+for(int i=0;i<m;i++){
+    for(int j=0;j<n;j++){
+        result[i][j]=getSum(mat,i,j,k);
     }
 }
+        return result;
+    }
+
+
+
+private int getSum(int[][] mat,int i,int j,int k){
+    int m=mat.length;
+    int n=mat[0].length;
+    int endRow=Math.min(m-1,i+k);
+    int endCol=Math.min(n-1,j+k);
+
+    int sum=mat[endRow][endCol];
+    int n1=(j-k-1>=0)?mat[endRow][j-k-1]:0;
+    int n2=(i-k-1>=0)?mat[i-k-1][endCol]:0;
+    int n3=(j-k-1>=0 && i-k-1>=0)?mat[i-k-1][j-k-1]:0;
+        return sum-n1-n2+n3;
+}}
