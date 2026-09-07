@@ -44,16 +44,25 @@ Explanation: It is the substring "abc" four times or the substring "abcabc" twic
 ## Solution
 
 **Language:** Java  
-**Runtime:** 75 ms (beats 43.64%)  
-**Memory:** 47 MB (beats 32.92%)  
-**Submitted:** 2026-09-07T06:20:35.281Z  
+**Runtime:** 0 ms  
+**Memory:** 42.4 MB  
+**Submitted:** 2026-09-07T06:20:49.318Z  
 
 ```java
 public class Solution {
     public boolean repeatedSubstringPattern(String s) {
-        String doubled = s + s;
-        String sub = doubled.substring(1, doubled.length() - 1);
-        return sub.contains(s);
+        int n = s.length();
+        for (int i = 1; i <= n / 2; i++) {
+            if (n % i == 0) {
+                String substring = s.substring(0, i);
+                StringBuilder repeated = new StringBuilder();
+                for (int j = 0; j < n / i; j++) {
+                    repeated.append(substring);
+                }
+                if (repeated.toString().equals(s)) return true;
+            }
+        }
+        return false;
     }
 }
 ```
