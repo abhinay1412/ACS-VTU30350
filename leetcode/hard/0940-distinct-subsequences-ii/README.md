@@ -47,9 +47,9 @@ Explanation: The 3 distinct subsequences are "a", "aa" and "aaa".
 ## Solution
 
 **Language:** Java  
-**Runtime:** 267 ms (beats 5.32%)  
-**Memory:** 43.1 MB (beats 81.56%)  
-**Submitted:** 2026-09-07T05:28:14.461Z  
+**Runtime:** 0 ms  
+**Memory:** 42.7 MB  
+**Submitted:** 2026-09-07T05:28:52.602Z  
 
 ```java
 class Solution {
@@ -57,22 +57,20 @@ class Solution {
         int n = s.length();
         int MOD = (int) 1e9 + 7;
 
-        int[] dp = new int[n];
-        Arrays.fill(dp, 1);
-        int result = 0;
+        int[] countEndWith = new int[26];
+        int sum = 0;
 
         for (int i = 0; i < n; i++) {
+            int idx = s.charAt(i) - 'a';
 
-            for (int j = 0; j < i; j++) {
-                if (s.charAt(i) != s.charAt(j)) {
-                    dp[i] = (int) ((dp[i] + (long) dp[j]) % MOD);
-                }
-            }
+            int cur = (int) ((1L + sum - countEndWith[idx] + MOD) % MOD);
 
-            result = (int) ((result + (long) dp[i]) % MOD);
+            sum = (sum + cur) % MOD;
+
+            countEndWith[idx] = (countEndWith[idx] + cur) % MOD;
         }
 
-        return result;
+        return sum;
     }
 }
 ```
