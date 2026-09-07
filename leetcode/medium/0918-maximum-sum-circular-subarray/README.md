@@ -50,81 +50,32 @@ Explanation: Subarray [-2] has maximum sum -2.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 6 ms (beats 79.37%)  
-**Memory:** 50.8 MB (beats 94.36%)  
-**Submitted:** 2026-09-07T05:47:58.922Z  
+**Runtime:** 0 ms  
+**Memory:** 42.2 MB  
+**Submitted:** 2026-09-07T05:48:20.355Z  
 
 ```java
 class Solution {
-
-    private int minSubarraySum(int[] nums){
-        int currSum = nums[0];
-        int minSum = nums[0];
-
-        for(int i = 1; i < nums.length; i++){
-            if(currSum > 0){
-                currSum = 0;
-            }
-
-            currSum += nums[i];
-            minSum = Math.min(currSum, minSum);
-        }
-
-        return minSum;
-    }
-
-    private int maxSubarraySum(int[] nums){
-        int currSum = nums[0];
-        int maxSum = nums[0];
-
-        for(int i = 1; i < nums.length; i++){
-            if(currSum < 0){
-                currSum = 0;
-            }
-
-            currSum += nums[i];
-            maxSum = Math.max(currSum, maxSum);
-        }
-
-        return maxSum;
-    }
-
     public int maxSubarraySumCircular(int[] nums) {
-
-        if(nums.length == 0){
-            return 0;
+        int total_sum = 0;
+        int cur = 0;
+        int max = Integer.MIN_VALUE;
+        for(int i:nums) {
+            cur = Math.max(cur+i,i);
+            max = Math.max(max,cur);
+            total_sum += i;
         }
-
-        // Check if all elements are negative
-        boolean x = true;
-        int ans = Integer.MIN_VALUE;
-
-        for(int i = 0; i < nums.length; i++){
-            if(nums[i] >= 0){
-                x = false;
-                break;
-            }
-
-            ans = Math.max(ans, nums[i]);
+        cur = 0;
+        int min = Integer.MAX_VALUE;
+        for(int i:nums) {
+            cur = Math.min(cur+i,i);
+            min = Math.min(min,cur);
         }
-
-        if(x){
-            return ans;
+        if(total_sum==min){
+            return max;
         }
-
-        // Case 1: Maximum subarray does not wrap
-        int ans1 = maxSubarraySum(nums);
-
-        // Case 2: Maximum subarray wraps around
-        int arraySum = 0;
-
-        for(int i = 0; i < nums.length; i++){
-            arraySum += nums[i];
-        }
-
-        int ans2 = arraySum - minSubarraySum(nums);
-
-        return Math.max(ans1, ans2);
+        return Math.max(max,(total_sum-min));
+        
     }
 }
 ```
