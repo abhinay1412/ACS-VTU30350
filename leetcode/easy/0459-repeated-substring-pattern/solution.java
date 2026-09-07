@@ -1,16 +1,16 @@
-public class Solution {
+class Solution {
     public boolean repeatedSubstringPattern(String s) {
-        int n = s.length();
-        for (int i = 1; i <= n / 2; i++) {
-            if (n % i == 0) {
-                String substring = s.substring(0, i);
-                StringBuilder repeated = new StringBuilder();
-                for (int j = 0; j < n / i; j++) {
-                    repeated.append(substring);
-                }
-                if (repeated.toString().equals(s)) return true;
+        int n = s.length(), prevLPS = 0, i = 1;
+        int[] lps = new int[n];
+        while (i < n) {
+            if (s.charAt(i) == s.charAt(prevLPS)) {
+                lps[i++] = ++prevLPS;
+            } else if (prevLPS == 0) {
+                lps[i++] = 0;
+            } else {
+                prevLPS = lps[prevLPS - 1];
             }
         }
-        return false;
+        return lps[n - 1] > 0 && n % (n - lps[n - 1]) == 0;
     }
 }
