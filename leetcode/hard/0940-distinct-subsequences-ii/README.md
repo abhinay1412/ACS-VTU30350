@@ -47,9 +47,9 @@ Explanation: The 3 distinct subsequences are "a", "aa" and "aaa".
 ## Solution
 
 **Language:** Java  
-**Runtime:** 0 ms  
-**Memory:** 42.3 MB  
-**Submitted:** 2026-09-07T05:29:05.453Z  
+**Runtime:** 3 ms (beats 89.36%)  
+**Memory:** 42.9 MB (beats 96.10%)  
+**Submitted:** 2026-09-07T05:29:09.342Z  
 
 ```java
 class Solution {
