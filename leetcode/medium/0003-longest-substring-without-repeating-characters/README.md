@@ -46,29 +46,33 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 ## Solution
 
 **Language:** Java  
-**Runtime:** 50 ms (beats 44.96%)  
-**Memory:** 47.8 MB (beats 49.46%)  
-**Submitted:** 2026-09-07T05:58:47.999Z  
+**Runtime:** 5 ms (beats 93.74%)  
+**Memory:** 47.9 MB (beats 38.57%)  
+**Submitted:** 2026-09-07T06:05:16.086Z  
 
 ```java
-class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        int n = s.length();
-        int maxLength = 0;
-        Map<Character, Integer> charMap = new HashMap<>();
-        int left = 0;
+class Solution 
+{
+    public int lengthOfLongestSubstring(String s) 
+    {
+        int maxLen = 0;
         
-        for (int right = 0; right < n; right++) {
-            if (!charMap.containsKey(s.charAt(right)) || charMap.get(s.charAt(right)) < left) {
-                charMap.put(s.charAt(right), right);
-                maxLength = Math.max(maxLength, right - left + 1);
-            } else {
-                left = charMap.get(s.charAt(right)) + 1;
-                charMap.put(s.charAt(right), right);
-            }
+        int[] pos = new int[128];
+
+        int start = 0, end = 0;
+
+        for (char ch : s.toCharArray())
+        {
+            start  = Math.max(start, pos[ch]);
+
+            maxLen = Math.max(maxLen, end-start+1);
+
+            pos[ch] = end + 1;
+            
+            end++;
         }
-        
-        return maxLength;
+
+        return maxLen;
     }
 }
 ```
