@@ -48,8 +48,8 @@ Explanation: The 3 distinct subsequences are "a", "aa" and "aaa".
 
 **Language:** Java  
 **Runtime:** 0 ms  
-**Memory:** 42.7 MB  
-**Submitted:** 2026-09-07T05:28:52.602Z  
+**Memory:** 42.3 MB  
+**Submitted:** 2026-09-07T05:29:05.453Z  
 
 ```java
 class Solution {
