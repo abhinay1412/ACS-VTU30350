@@ -1,14 +1,14 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 class MyStack {
     private Queue<Integer> queue;
 
     public MyStack() {
-        queue = new LinkedList<>();
+        // ArrayDeque is faster than LinkedList in Java
+        queue = new ArrayDeque<>();
     }
     
-    // O(N) push rotates existing elements so the latest element is always at the front
     public void push(int x) {
         queue.add(x);
         int size = queue.size();
@@ -19,7 +19,7 @@ class MyStack {
     }
     
     public int pop() {
-        return queue.remove();
+        return queue.poll();
     }
     
     public int top() {
