@@ -51,36 +51,42 @@ minStack.getMin(); // return -2
 ## Solution
 
 **Language:** Java  
-**Runtime:** 34 ms (beats 60.79%)  
-**Memory:** 99.9 MB (beats 64.28%)  
-**Submitted:** 2026-09-10T03:50:25.861Z  
+**Runtime:** 0 ms  
+**Memory:** 43 MB  
+**Submitted:** 2026-09-10T03:50:59.371Z  
 
 ```java
 class MinStack {
-    Stack<Integer> s = new Stack<>(), st = new Stack<>();
+    private int[] stack;
+    private int[] minStack;
+    private int topIndex;
 
-    public MinStack() {}
+    public MinStack() {
+        stack = new int[30000];
+        minStack = new int[30000];
+        topIndex = -1;
+    }
 
     public void push(int val) {
-        s.push(val);
-        if (st.isEmpty() || val <= st.peek()) {
-            st.push(val);
+        topIndex++;
+        stack[topIndex] = val;
+        if (topIndex == 0) {
+            minStack[topIndex] = val;
+        } else {
+            minStack[topIndex] = Math.min(val, minStack[topIndex - 1]);
         }
     }
 
     public void pop() {
-        if (s.peek().equals(st.peek())) {
-            st.pop();
-        }
-        s.pop();
+        topIndex--;
     }
 
     public int top() {
-        return s.peek();
+        return stack[topIndex];
     }
 
     public int getMin() {
-        return st.peek();
+        return minStack[topIndex];
     }
 }
 ```
