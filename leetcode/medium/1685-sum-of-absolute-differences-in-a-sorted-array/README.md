@@ -42,32 +42,35 @@ Output: [24,15,13,15,21]
 ## Solution
 
 **Language:** Java  
-**Runtime:** 4 ms (beats 82.32%)  
-**Memory:** 85.2 MB (beats 82.24%)  
-**Submitted:** 2026-09-10T04:19:28.647Z  
+**Runtime:** 3 ms (beats 99.96%)  
+**Memory:** 84.9 MB (beats 96.44%)  
+**Submitted:** 2026-09-10T04:20:32.734Z  
 
 ```java
 class Solution {
     public int[] getSumAbsoluteDifferences(int[] nums) {
         int n = nums.length;
+        int[] result = new int[n];
+        
+        // Step 1: Calculate total sum of array elements
         int totalSum = 0;
         for (int num : nums) {
             totalSum += num;
         }
-
-        int[] result = new int[n];
+        
         int prefixSum = 0;
-
+        
+        // Step 2: Compute absolute difference sums in a single pass
         for (int i = 0; i < n; i++) {
-            int suffixSum = totalSum - prefixSum - nums[i];
-
-            int leftTotal = nums[i] * i - prefixSum;
-            int rightTotal = suffixSum - nums[i] * (n - i - 1);
-
-            result[i] = leftTotal + rightTotal;
-            prefixSum += nums[i];
+            int num = nums[i];
+            int suffixSum = totalSum - prefixSum - num;
+            
+            // Combining left and right contributions directly into one formula:
+            result[i] = (num * i - prefixSum) + (suffixSum - num * (n - 1 - i));
+            
+            prefixSum += num;
         }
-
+        
         return result;
     }
 }
