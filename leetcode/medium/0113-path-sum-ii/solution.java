@@ -26,19 +26,15 @@ class Solution {
             return;
         }
 
-        // Add current node's value to current path
         currentPath.add(node.val);
 
-        // Check if current node is a leaf and path sum equals targetSum
         if (node.left == null && node.right == null && targetSum == node.val) {
-            result.add(new ArrayList<>(currentPath)); // Make a copy of the path
+            result.add(new ArrayList<>(currentPath)); 
         } else {
-            // Recurse on left and right subtrees
             findPaths(node.left, targetSum - node.val, currentPath, result);
             findPaths(node.right, targetSum - node.val, currentPath, result);
         }
 
-        // Backtrack: remove the last element before returning
         currentPath.remove(currentPath.size() - 1);
     }
 }
