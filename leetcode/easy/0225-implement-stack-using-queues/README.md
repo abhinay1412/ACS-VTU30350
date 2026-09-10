@@ -55,21 +55,21 @@ myStack.empty(); // return False
 
 **Language:** Java  
 **Runtime:** 1 ms (beats 84.00%)  
-**Memory:** 42.6 MB (beats 84.82%)  
-**Submitted:** 2026-09-10T03:55:17.945Z  
+**Memory:** 42.7 MB (beats 84.82%)  
+**Submitted:** 2026-09-10T03:56:45.516Z  
 
 ```java
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 class MyStack {
     private Queue<Integer> queue;
 
     public MyStack() {
-        queue = new LinkedList<>();
+        // ArrayDeque is faster than LinkedList in Java
+        queue = new ArrayDeque<>();
     }
     
-    // O(N) push rotates existing elements so the latest element is always at the front
     public void push(int x) {
         queue.add(x);
         int size = queue.size();
@@ -80,7 +80,7 @@ class MyStack {
     }
     
     public int pop() {
-        return queue.remove();
+        return queue.poll();
     }
     
     public int top() {
