@@ -42,38 +42,28 @@ parkingSystem.addCar(1); // return false because there is no available slot for 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 8 ms (beats 57.80%)  
-**Memory:** 47 MB (beats 42.63%)  
-**Submitted:** 2026-09-21T05:33:45.326Z  
+**Runtime:** 7 ms (beats 100.00%)  
+**Memory:** 46.8 MB (beats 89.67%)  
+**Submitted:** 2026-09-21T06:08:34.406Z  
 
 ```java
-class ParkingSystem {
-    private int big,small,medium;
+    class ParkingSystem {
+
+    int[] arr ;
     public ParkingSystem(int big, int medium, int small) {
-        
-       this.big = big;
-       this.medium = medium;
-       this.small= small; 
+        arr = new int[]{big, medium, small};
     }
-    
+
     public boolean addCar(int carType) {
-        if(carType == 1 && big>0){
-            big-=1;
-            return true;
-        }
-        else if(carType==2 && medium>0){
-            medium-=1;
-            return true;
-        }
-        else if(carType==3 && small>0){
-            small-=1;
-            return true; 
-        }
-        return false;
-        
-        
+        return (arr[carType-1]-- > 0)? true : false;
     }
 }
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * ParkingSystem obj = new ParkingSystem(big, medium, small);
+ * boolean param_1 = obj.addCar(carType);
+ */
 ```
 
 ---
