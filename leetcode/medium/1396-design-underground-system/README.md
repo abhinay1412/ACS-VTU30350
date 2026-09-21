@@ -80,51 +80,65 @@ undergroundSystem.getAverageTime("Leyton", "Paradise"); // return 6.66667, (5 + 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 111 ms (beats 37.44%)  
-**Memory:** 56.9 MB (beats 99.21%)  
-**Submitted:** 2026-09-21T06:15:52.142Z  
+**Runtime:** 21 ms  
+**Memory:** 45.2 MB  
+**Submitted:** 2026-09-21T06:16:31.117Z  
 
 ```java
+
 class UndergroundSystem {
-    private final Map<Integer, Pair<String, Integer>> customers;
-    private final Map<String, int[]> stationsDistance;
+    private Map<Integer, CheckInInfo> checkIns;
+    private Map<String, TravelInfo> travelTimes;
 
     public UndergroundSystem() {
-        this.customers = new HashMap<>();
-        this.stationsDistance = new HashMap<>();
+        checkIns = new HashMap<>();
+        travelTimes = new HashMap<>();
     }
-    
-    public void checkIn(final int id, final String stationName, final int t) {
-        this.customers.put(id, new Pair(stationName, t));
+
+    public void checkIn(int id, String stationName, int t) {
+        checkIns.put(id, new CheckInInfo(stationName, t));
     }
-    
-    public void checkOut(final int id, final String stationName, final int t) {
-        final Pair<String, Integer> customer = this.customers.get(id);
 
-        this.stationsDistance.putIfAbsent(customer.getKey() + "-" + stationName, new int[2]);
+    public void checkOut(int id, String stationName, int t) {
+        CheckInInfo checkInInfo = checkIns.remove(id);
+        String travel = checkInInfo.stationName + "," + stationName;
+        int travelTime = t - checkInInfo.checkInTime;
 
-        final int[] sum = this.stationsDistance.get(customer.getKey() + "-" + stationName);
-
-        sum[0] += t - customer.getValue();
-        sum[1]++;
-
-        this.customers.remove(id);
+        if (travelTimes.containsKey(travel)) {
+            TravelInfo travelInfo = travelTimes.get(travel);
+            travelInfo.totalTime += travelTime;
+            travelInfo.count++;
+        } else {
+            travelTimes.put(travel, new TravelInfo(travelTime, 1));
+        }
     }
-    
-    public double getAverageTime(final String startStation, final String endStation) {
-        final int[] sum = this.stationsDistance.get(startStation + "-" + endStation);
 
-        return (double) sum[0] / sum[1];
+    public double getAverageTime(String startStation, String endStation) {
+        String travel = startStation + "," + endStation;
+        TravelInfo travelInfo = travelTimes.get(travel);
+        return (double) travelInfo.totalTime / travelInfo.count;
+    }
+
+    private class CheckInInfo {
+        String stationName;
+        int checkInTime;
+
+        public CheckInInfo(String stationName, int checkInTime) {
+            this.stationName = stationName;
+            this.checkInTime = checkInTime;
+        }
+    }
+
+    private class TravelInfo {
+        int totalTime;
+        int count;
+
+        public TravelInfo(int totalTime, int count) {
+            this.totalTime = totalTime;
+            this.count = count;
+        }
     }
 }
-
-/**
- * Your UndergroundSystem object will be instantiated and called as such:
- * UndergroundSystem obj = new UndergroundSystem();
- * obj.checkIn(id,stationName,t);
- * obj.checkOut(id,stationName,t);
- * double param_3 = obj.getAverageTime(startStation,endStation);
- */
 ```
 
 ---
