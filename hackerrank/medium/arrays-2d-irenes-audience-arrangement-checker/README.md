@@ -72,7 +72,7 @@ In this input, the element 4 below the diagonal is not 0, hence it is not an upp
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T06:07:03.738Z  
+**Submitted:** 2026-11-11T06:09:03.118Z  
 
 ```java
 import java.io.*;
@@ -92,21 +92,21 @@ public class Solution {
             }
         }
         
-        boolean isUpperTriangular = true;
+        boolean flag = true;
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 if (arr[i][j] != 0) {
-                    isUpperTriangular = false;
+                    flag = false;
                     break;
                 }
             }
-            if (!isUpperTriangular) {
+            if (!flag) {
                 break;
             }
         }
         
-        if (isUpperTriangular) {
+        if (flag) {
             System.out.println("Upper triangular matrix");
         } else {
             System.out.println("Not an Upper triangular matrix");
