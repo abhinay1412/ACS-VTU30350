@@ -76,37 +76,35 @@ The order of item IDs in the snake pattern is 1 2 3 4 8 7 6 5 9 10 11 12.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T06:43:28.754Z  
+**Submitted:** 2026-11-11T07:05:58.630Z  
 
 ```java
 import java.util.*;
-
-public class Solution {
-    public static void main(String[] args) {
+public class Solution{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         
         int m = sc.nextInt();
         int n = sc.nextInt();
+        
         int[][] arr = new int[m][n];
         
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
                 arr[i][j] = sc.nextInt();
             }
         }
-        
-        for (int i = 0; i < m; i++) {
-            if (i % 2 == 0) {
-                for (int j = 0; j < n; j++) {
-                    System.out.print(arr[i][j] + " ");
+        for(int i=0;i<m;i++){
+            if(i%2==0){
+                for(int j=0;j<n;j++){
+                    System.out.print(arr[i][j]+" ");
                 }
-            } else {
-                for (int j = n - 1; j >= 0; j--) {
-                    System.out.print(arr[i][j] + " ");
+            }else{
+                for(int j=n-1;j>=0;j--){
+                    System.out.print(arr[i][j]+" ");
                 }
             }
         }
-        
         sc.close();
     }
 }
