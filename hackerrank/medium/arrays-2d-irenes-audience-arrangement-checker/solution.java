@@ -15,21 +15,21 @@ public class Solution {
             }
         }
         
-        boolean isUpperTriangular = true;
+        boolean flag = true;
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 if (arr[i][j] != 0) {
-                    isUpperTriangular = false;
+                    flag = false;
                     break;
                 }
             }
-            if (!isUpperTriangular) {
+            if (!flag) {
                 break;
             }
         }
         
-        if (isUpperTriangular) {
+        if (flag) {
             System.out.println("Upper triangular matrix");
         } else {
             System.out.println("Not an Upper triangular matrix");
