@@ -6,7 +6,6 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         char ch = sc.next().charAt(0);
         
-        // Convert to lowercase to easily check both uppercase and lowercase vowels
         char lowerCh = Character.toLowerCase(ch);
         
         if (Character.isLetter(ch)) {
