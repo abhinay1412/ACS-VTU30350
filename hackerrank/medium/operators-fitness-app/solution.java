@@ -10,6 +10,6 @@ public class Solution {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        System.out.println(N*60);
+        System.out.print(N*60);
     }
 }
