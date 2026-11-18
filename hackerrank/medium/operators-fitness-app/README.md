@@ -59,7 +59,7 @@ Here, N = 3. The conversion of 3minutes will be 3 x 60 = 300 seconds. Hence, 180
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T16:59:53.825Z  
+**Submitted:** 2026-11-18T17:02:27.244Z  
 
 ```java
 import java.io.*;
@@ -74,7 +74,7 @@ public class Solution {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        System.out.println(N*60);
+        System.out.print(N*60);
     }
 }
 
