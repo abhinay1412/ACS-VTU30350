@@ -71,7 +71,7 @@ Grade: A
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T15:37:42.441Z  
+**Submitted:** 2026-11-18T15:38:37.245Z  
 
 ```java
 import java.util.*;
