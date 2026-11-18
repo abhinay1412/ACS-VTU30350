@@ -69,7 +69,7 @@ The input character Z is a consonant, so the output is "Consonant".
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T19:13:53.629Z  
+**Submitted:** 2026-11-18T19:14:18.600Z  
 
 ```java
 import java.io.*;
@@ -80,7 +80,6 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         char ch = sc.next().charAt(0);
         
-        // Convert to lowercase to easily check both uppercase and lowercase vowels
         char lowerCh = Character.toLowerCase(ch);
         
         if (Character.isLetter(ch)) {
