@@ -78,7 +78,7 @@ The output consists of a single integer which represents the profit obtained by 
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T17:25:25.302Z  
+**Submitted:** 2026-11-19T02:43:38.120Z  
 
 ```java
 import java.io.*;
