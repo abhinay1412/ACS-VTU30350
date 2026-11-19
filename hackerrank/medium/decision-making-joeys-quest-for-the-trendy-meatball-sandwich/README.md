@@ -67,7 +67,7 @@ The input number 275 is a 3-digit number, but its middle digit 7 is not divisibl
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-19T03:12:23.473Z  
+**Submitted:** 2026-11-19T03:13:43.047Z  
 
 ```java
 import java.io.*;
