@@ -81,7 +81,7 @@ Output the total traveling cost in rupees.
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-19T05:39:18.256Z  
+**Submitted:** 2026-11-19T05:39:59.185Z  
 
 ```java
 import java.io.*;
