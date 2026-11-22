@@ -62,35 +62,28 @@ Here, A = (50,50,50). The pair with maximum sum would be 50 and 50, since they a
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T08:35:04.748Z  
+**Submitted:** 2026-11-22T08:50:44.414Z  
 
 ```java
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
-
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
         
-        for(int i = 0; i<n; i++){
+        if (n < 2) {
+            System.out.println(0);
+            return;
+        }
+        
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
+        
         Arrays.sort(arr);
-        
-        long l = arr[n-1] + arr[n-2];
-        
-        System.out.println(l);
-        if(n<2){
-            System.out.println("0");
-        }
-        
+        System.out.println((long) arr[n - 1] + arr[n - 2]);
     }
 }
 
