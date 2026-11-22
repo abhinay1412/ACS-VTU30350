@@ -71,7 +71,7 @@ The array is initially sorted as [100, 200, 300, 400]. The new product ID 150 is
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-11T03:41:39.404Z  
+**Submitted:** 2026-11-22T07:51:11.521Z  
 
 ```java
 import java.util.*;
