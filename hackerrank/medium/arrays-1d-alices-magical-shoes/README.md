@@ -62,7 +62,7 @@ Here, the given array is (1,1,1,1,1). Alice cannot go up to the roof of any of t
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-10T08:59:30.907Z  
+**Submitted:** 2026-11-22T13:19:00.518Z  
 
 ```java
 import java.io.*;
