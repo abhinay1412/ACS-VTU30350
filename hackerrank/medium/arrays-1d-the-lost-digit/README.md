@@ -62,7 +62,7 @@ Here, A = {2, 3, 4} and N = 4. The sequence should contain the numbers from 1 to
 **Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T13:06:13.244Z  
+**Submitted:** 2026-11-23T05:40:24.518Z  
 
 ```py
 n = int(input())
