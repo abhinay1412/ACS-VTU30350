@@ -68,36 +68,21 @@ The array is initially sorted as [100, 200, 300, 400]. The new product ID 150 is
 
 ## Solution
 
-**Language:** Java  
+**Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T07:51:11.521Z  
+**Submitted:** 2026-11-23T05:32:34.152Z  
 
-```java
-import java.util.*;
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+import bisect
 
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        int n = sc.nextInt();
-        int[] arr = new int[n + 1];
-        
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        
-        arr[n] = sc.nextInt();
-        
-        Arrays.sort(arr);
-        
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        
-        sc.close();
-    }
-}
+n = int(input())
+arr = list(map(int, input().split()))
+new_id = int(input())
+
+bisect.insort(arr, new_id)
+print(*arr)
 
 ```
 
