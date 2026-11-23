@@ -59,33 +59,16 @@ Here, A = (50,50,50). The pair with maximum sum would be 50 and 50, since they a
 
 ## Solution
 
-**Language:** Java  
+**Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T08:50:44.414Z  
+**Submitted:** 2026-11-23T05:36:51.854Z  
 
-```java
-import java.util.*;
-
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        
-        if (n < 2) {
-            System.out.println(0);
-            return;
-        }
-        
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        
-        Arrays.sort(arr);
-        System.out.println((long) arr[n - 1] + arr[n - 2]);
-    }
-}
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+a = sorted(map(int, input().split()))
+print(a[-1] + a[-2] if n >= 2 else 0)
 
 ```
 
