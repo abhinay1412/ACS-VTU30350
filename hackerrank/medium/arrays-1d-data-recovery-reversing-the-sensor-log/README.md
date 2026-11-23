@@ -64,33 +64,15 @@ Output the restored temperature readings in a single line, separated by spaces.
 
 ## Solution
 
-**Language:** Java  
+**Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-10T09:39:20.460Z  
+**Submitted:** 2026-11-23T05:43:38.117Z  
 
-```java
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-
-public class Solution {
-
-    public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i=0; i<n;i++){
-            arr[i]=sc.nextInt();
-        }
-        for(int j=n-1;j>=0;j--){
-            System.out.print(arr[j]+" ");
-        }
-    }
-}
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+input()
+print(*input().split()[::-1])
 
 ```
 
