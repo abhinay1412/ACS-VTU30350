@@ -59,35 +59,15 @@ Here, the given array is (1,1,1,1,1). Alice cannot go up to the roof of any of t
 
 ## Solution
 
-**Language:** Java  
+**Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T13:19:00.518Z  
+**Submitted:** 2026-11-23T05:42:21.787Z  
 
-```java
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-
-public class Solution {
-
-    public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int cnt = 0;
-        int a[]= new int[n];
-        for(int i = 0; i<n; i++){
-            if(sc.nextInt()%3==0){
-                cnt++;
-                
-            }
-        }
-        System.out.println(cnt);
-    }
-}
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+input()
+print(sum(1 for x in map(int, input().split()) if x % 3 == 0))
 
 ```
 
