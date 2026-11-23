@@ -67,19 +67,13 @@ Here the length of array A is 1(N). Since the array has only one element and the
 **Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T08:13:52.376Z  
+**Submitted:** 2026-11-23T05:35:03.080Z  
 
 ```py
-n = int(input())
-arr = [int(x) for x in input().split()]
-
-unique_vals = sorted(set(arr))
-
-if len(unique_vals) < 2:
-    print(0)
-else:
-    second_largest = unique_vals[-2]
-    print(arr.count(second_largest))
+input()
+a = list(map(int, input().split()))
+s = sorted(set(a))
+print(a.count(s[-2]) if len(s) > 1 else 0)
 
 ```
 
