@@ -65,38 +65,16 @@ Return 1 if all the numbers are consecutive after arrangement, otherwise return 
 
 ## Solution
 
-**Language:** Java  
+**Language:** Python  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-22T09:24:19.556Z  
+**Submitted:** 2026-11-23T05:38:23.849Z  
 
-```java
-import java.io.*;
-import java.util.*;
-
-public class Solution {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-
-        Arrays.sort(arr);
-
-        int isConsecutive = 1;
-        for (int i = 1; i < n; i++) {
-            if (arr[i] - arr[i - 1] != 1) {
-                isConsecutive = 0;
-                break;
-            }
-        }
-
-        System.out.println(isConsecutive);
-    }
-}
+```py
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(input())
+a = list(map(int, input().split()))
+print(1 if len(set(a)) == n and max(a) - min(a) == n - 1 else 0)
 
 ```
 
