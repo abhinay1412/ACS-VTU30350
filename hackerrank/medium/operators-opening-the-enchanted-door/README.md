@@ -65,24 +65,19 @@ The program will output a single integer, which is the sum of the first and last
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-11-18T17:36:51.137Z  
+**Submitted:** 2026-11-25T06:52:40.304Z  
 
 ```java
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 public class Solution {
-
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int f = a/1000;
-        int l = a%10;
+        int n = sc.nextInt();
+        int f = n/1000;
+        int l = n%10;
         System.out.println(f+l);
+        
     }
 }
 
